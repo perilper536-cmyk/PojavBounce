@@ -360,6 +360,11 @@ tasks.jar {
         rootProject.configurations.mappings.get().map(::zipTree)
     }
 
+    // Ensure the produced JAR's filename matches the configured archive name and version
+    // This makes the artifact predictable for external exporters that look for the project JAR.
+    archiveBaseName.set(archivesBaseName)
+    archiveVersion.set(modVersion)
+
     inputs.property("archives_base_name", archivesBaseName)
     inputs.property("mod_version", modVersion)
     inputs.property("maven_group", mavenGroup)
